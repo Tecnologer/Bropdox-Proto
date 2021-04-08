@@ -16,6 +16,7 @@ message File {
   int64 Size = 3;
   int64 CreatedAt = 4;
   int64 UpdatedAt = 5;
+  bytes Content = 6;
 }
 
 enum TypeResponse {
