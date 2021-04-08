@@ -1,0 +1,28 @@
+syntax = "proto3";
+package proto;
+
+service Bropdox {
+  rpc CreateFile(File) returns (FileResponse);
+  rpc UpdateFile(File) returns (FileResponse);
+  rpc RemoveFile(File) returns (FileResponse);
+  rpc Notifications(File) returns (stream FileResponse);
+}
+
+message File {
+  string Id = 1;
+  string Path = 2;
+  int64 Size = 3;
+  int64 CreatedAt = 4;
+  int64 UpdatedAt = 5;
+}
+
+enum TypeResponse {
+  CREATED = 0;
+  UPDATED = 1;
+  DELETED = 2;
+}
+
+message FileResponse {
+  File File = 1;
+  TypeResponse Type = 2;
+}
