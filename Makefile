@@ -1,7 +1,7 @@
 folder:
 	mkdir -p ./models/proto;
 go:
-	protoc -I=. --go_out=plugins=grpc:./models/proto ./bropdox.proto
+	protoc --go_out=../models/proto --go_opt=paths=source_relative --go-grpc_out=../models/proto --go-grpc_opt=paths=source_relative ./bropdox.proto
 
 js:
 	protoc -I=. --js_out=import_style=commonjs:./models/proto --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./models/proto ./bropdox.proto
