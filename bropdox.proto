@@ -7,8 +7,12 @@ service Bropdox {
   rpc CreateFile(File) returns (Response);
   rpc UpdateFile(File) returns (Response);
   rpc RemoveFile(File) returns (Response);
+  rpc GetFile(File) returns (Response);
+  rpc GetFiles(Empty) returns (Response);
   rpc Notifications(File) returns (stream Response);
 }
+
+message Empty {}
 
 message File {
   string Id = 1;
@@ -29,6 +33,7 @@ message FileResponse {
   File File = 1;
   TypeResponse Type = 2;
 }
+message FilesResponse { repeated File Files = 1; }
 
 message ErrorResponse { string Message = 1; }
 
@@ -36,5 +41,6 @@ message Response {
   oneof Content {
     FileResponse FileResponse = 1;
     ErrorResponse ErrorResponse = 2;
+    FilesResponse FilesResponse = 3;
   }
 }
